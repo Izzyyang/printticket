@@ -14,7 +14,7 @@ public class Cart {
         cartTypeAddress.put("nodiscount_single","src/main/resources/cart_single_nodisocunt_good.json");
         cartTypeAddress.put("discount_twofreeone","src/main/resources/cart_buy_two_getonefree_goods.json");
         cartTypeAddress.put("discount_fivepercent","src/main/resources/cart_five_percent_discount_goods.json");
-        cartTypeAddress.put("discount_twofrrone_fivediscount","src/main/resources/cart_get_two_dicountway_goods.json");
+        cartTypeAddress.put("discount_twofreeone_fivediscount","src/main/resources/cart_get_two_dicountway_goods.json");
     }
 
     //单例模式使用：使用静态内部类初始化购物车；初始化只需一次；
