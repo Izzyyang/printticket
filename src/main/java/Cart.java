@@ -25,7 +25,7 @@ public class Cart {
      * 计算购物车内商品原始总价；
      * @return
      */
-    public double account() {
+    public double countAll() {
         double  result = 0.0;
         for (Good good: this.goods.keySet()){
             result += good.getPrice() * this.goods.get(good);
@@ -33,6 +33,27 @@ public class Cart {
         return result;
     }
 
+    public double countDiscount() {
+        double discountFee = 0.0;
+        List barcodes = null;
+        for (Good good: this.goods.keySet()){
+            barcodes = DiscountGood.DiscountHelper.getDisCountBarCodesByType("BUY_ONE_SEND_ONE_DISCOUNT");
+            for (int i =0; i < barcodes.size(); i++) {
+                if (barcodes.get(i).toString().equals(good.getBarcode())){
+                    return discountFee = ( this.goods.get(good) / 3 ) * good.getPrice();
+                }
+            }
+            barcodes = DiscountGood.DiscountHelper.getDisCountBarCodesByType("FIVE_PERCENT_DISCOUNT");
+            for (int i = 0; i < barcodes.size(); i++){
+                if (barcodes.get(i).toString().equals(good.getBarcode())){
+                    return  discountFee = 0.05 * this.goods.get(good);
+                }
+            }
+        }
+
+        return discountFee;
+
+    }
     /**
      * 加入购物车
      * @param good

@@ -33,7 +33,7 @@ public class Print {
         sb.append(getBuyOneSendOneStr(cart));
         //总计打印；
         sb.append(SPLITLINE);
-        sb.append("总计："+cart.account()+"（元）\n");
+        sb.append("总计："+cart.countAll()+"（元）\n");
         if(totalDiscountFee > 0) {
            sb.append("节省："+totalDiscountFee+"（元）");
         }
