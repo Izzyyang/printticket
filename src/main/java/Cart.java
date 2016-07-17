@@ -64,13 +64,13 @@ public class Cart {
                 for (String goodNum : goodNums) {
                     goodNum = goodNum.trim();
                     String barCode = goodNum.split("-")[0];
-                    Integer num = goodNum != null && goodNum.split("-").length > 1 ? Integer.valueOf(goodNum.split("-")[1]) : 1;
-                    num = goodNumMap.containsKey(Good.goodMap.get(barCode)) ? goodNumMap.get(Good.goodMap.get(barCode)) + 1 : num;
                     if (!Good.goodMap.containsKey(barCode)) {
                         System.out.println("商品不存在！");
                         return null;
                     }
-                    goodNumMap.put(Good.goodMap.get(barCode), num);
+                    Integer numIncremental = goodNum != null && goodNum.split("-").length > 1 ? Integer.valueOf(goodNum.split("-")[1]) : 1;
+                    Integer numOld = goodNumMap.get(Good.goodMap.get(barCode));
+                   goodNumMap.put(Good.goodMap.get(barCode), numOld + numIncremental);
                 }
             } catch (Exception e) {
                 System.out.println("JSON 数据解析失败！");
