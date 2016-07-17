@@ -69,8 +69,8 @@ public class Cart {
                         return null;
                     }
                     Integer numIncremental = goodNum != null && goodNum.split("-").length > 1 ? Integer.valueOf(goodNum.split("-")[1]) : 1;
-                    Integer numOld = goodNumMap.get(Good.goodMap.get(barCode));
-                   goodNumMap.put(Good.goodMap.get(barCode), numOld + numIncremental);
+                    Integer numOld = null != goodNumMap.get(Good.goodMap.get(barCode)) ? goodNumMap.get(Good.goodMap.get(barCode)) : 0;
+                    goodNumMap.put(Good.goodMap.get(barCode), numOld + numIncremental);
                 }
             } catch (Exception e) {
                 System.out.println("JSON 数据解析失败！");
