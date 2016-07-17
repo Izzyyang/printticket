@@ -7,7 +7,10 @@ import java.util.List;
 import java.util.Map;
 
 public class DiscountGood {
-    public static  String discountGoodFilePath = "src/main/resources/discount_info.json";
+    public static final String discountGoodFilePath  = "src/main/resources/discount_info.json";
+    public static final String five_percent_discount = "FIVE_PERCENT_DISCOUNT";
+    public static final String buy_one_send_one = "BUY_ONE_SEND_ONE_DISCOUNT";
+
 
     public static List getDiscountGoods(String type){
         return DiscountHelper.getDisCountBarCodesByType(type);

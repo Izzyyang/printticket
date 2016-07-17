@@ -24,12 +24,12 @@ public enum Good {
     private String suCategory;
     private double price;
 
-    Good(String barcode, String name, String unit, String category, String suCategory, double price) {
+    Good(String barcode, String name, String unit, String suCategory, String category, double price) {
         this.barcode = barcode;
         this.name = name;
         this.unit = unit;
-        this.category = category;
         this.suCategory = suCategory;
+        this.category = suCategory;
         this.price = price;
     }
 
@@ -37,4 +37,6 @@ public enum Good {
         return price;
     }
     public String getName() { return name;}
+    public String getBarcode() { return barcode;}
+    public String getSuCategory() { return suCategory;}
 }
