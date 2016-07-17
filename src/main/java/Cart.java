@@ -14,7 +14,9 @@ public class Cart {
         cartTypeAddress.put("nodiscount_single","src/main/resources/cart_single_nodisocunt_good.json");
         cartTypeAddress.put("discount_twofreeone","src/main/resources/cart_buy_two_getonefree_goods.json");
         cartTypeAddress.put("discount_fivepercent","src/main/resources/cart_five_percent_discount_goods.json");
-        cartTypeAddress.put("discount_twofreeone_fivediscount","src/main/resources/cart_get_two_dicountway_goods.json");
+        cartTypeAddress.put("discount_twofreeone_fivepercent","src/main/resources/cart_get_two_dicountway_goods.json");
+        cartTypeAddress.put("discount_twofreeone_fivepercent_nodiscount_1","src/main/resources/cart_get_three_discountway_goods_mixin_1.json");
+        cartTypeAddress.put("discount_twofreeone_fivepercent_nodiscount_2","src/main/resources/cart_get_three_discountway_goods_mixin_2.json");
     }
 
     //单例模式使用：使用静态内部类初始化购物车；初始化只需一次；
@@ -27,6 +29,7 @@ public class Cart {
      */
     public double countAll() {
         double  result = 0.0;
+        System.out.println(this.goods);
         for (Good good: this.goods.keySet()){
             result += good.getPrice() * this.goods.get(good);
         }
@@ -37,19 +40,25 @@ public class Cart {
         double discountFee = 0.0;
         List barcodes = null;
         for (Good good: this.goods.keySet()){
+            Boolean hasDiscounted = false;
             barcodes = DiscountGood.DiscountHelper.getDisCountBarCodesByType("BUY_ONE_SEND_ONE_DISCOUNT");
             for (int i =0; i < barcodes.size(); i++) {
                 if (barcodes.get(i).toString().equals(good.getBarcode())){
-                    return discountFee = ( this.goods.get(good) / 3 ) * good.getPrice();
+                    discountFee += ( this.goods.get(good) / 3 ) * good.getPrice();
+                    hasDiscounted = true;
                 }
             }
-            barcodes = DiscountGood.DiscountHelper.getDisCountBarCodesByType("FIVE_PERCENT_DISCOUNT");
-            for (int i = 0; i < barcodes.size(); i++){
-                if (barcodes.get(i).toString().equals(good.getBarcode())){
-                    return  discountFee = 0.05 * this.goods.get(good) * good.getPrice();
+            System.out.println(discountFee);
+            if (!hasDiscounted == true){
+                barcodes = DiscountGood.DiscountHelper.getDisCountBarCodesByType("FIVE_PERCENT_DISCOUNT");
+                for (int i = 0; i < barcodes.size(); i++){
+                    if (barcodes.get(i).toString().equals(good.getBarcode())){
+                        discountFee += 0.05 * this.goods.get(good) * good.getPrice();
+                    }
                 }
+
             }
-        }
+       }
 
         return discountFee;
 
