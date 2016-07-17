@@ -1,5 +1,8 @@
 import com.alibaba.fastjson.JSON;
 import util.ReadFileHelper;
+
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,6 +35,8 @@ public class Cart {
         for (Good good: this.goods.keySet()){
             result += good.getPrice() * this.goods.get(good);
         }
+        BigDecimal bg =  new BigDecimal(result);
+        result = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
         return result;
     }
 
@@ -54,6 +59,8 @@ public class Cart {
             }
 
         }
+        BigDecimal bg =  new BigDecimal(discountFee);
+        discountFee = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
         return discountFee;
     }
     public double countDiscount() {
