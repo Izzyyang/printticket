@@ -13,7 +13,7 @@ public class Cart {
         cartTypeAddress.put("nodiscount_multiple","src/main/resources/cart_buy_nodiscount_multiple_goods.json");
         cartTypeAddress.put("nodiscount_single","src/main/resources/cart_single_nodisocunt_good.json");
         cartTypeAddress.put("discount_twofreeone","src/main/resources/cart_buy_two_getonefree_goods.json");
-        cartTypeAddress.put("discount_fivediscount","src/main/resources/cart_five_percent_discount_goods.json");
+        cartTypeAddress.put("discount_fivepercent","src/main/resources/cart_five_percent_discount_goods.json");
         cartTypeAddress.put("discount_twofrrone_fivediscount","src/main/resources/cart_get_two_dicountway_goods.json");
     }
 
@@ -46,7 +46,7 @@ public class Cart {
             barcodes = DiscountGood.DiscountHelper.getDisCountBarCodesByType("FIVE_PERCENT_DISCOUNT");
             for (int i = 0; i < barcodes.size(); i++){
                 if (barcodes.get(i).toString().equals(good.getBarcode())){
-                    return  discountFee = 0.05 * this.goods.get(good);
+                    return  discountFee = 0.05 * this.goods.get(good) * good.getPrice();
                 }
             }
         }
