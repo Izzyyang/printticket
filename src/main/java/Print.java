@@ -17,7 +17,7 @@ public class Print {
             double discountFee = 0.0;
             totalFee = item.getKey().getPrice() * item.getValue();
             // TODO 折扣获取；
-//            discountFee = cart.countDiscount();
+            discountFee = cart.countGoodDiscount(item.getKey(), item.getValue());
             sb.append("名称："+item.getKey().getName())
             .append("，数量："+item.getValue())
             .append("，单价："+item.getKey().getPrice()+"（元）")
@@ -30,7 +30,7 @@ public class Print {
             sb.append("\n");
         }
         //买二赠一商品信息打印；
-        sb.append(getBuyOneSendOneStr(cart));
+        sb.append(getBuyTwoFreeOneStr(cart));
         //总计打印；
         sb.append(SPLITLINE);
         sb.append("总计："+cart.countAll()+"（元）\n");
@@ -41,7 +41,7 @@ public class Print {
         return sb.toString();
     }
 
-    public static String getBuyOneSendOneStr(Cart cart) {
+    public static String getBuyTwoFreeOneStr(Cart cart) {
         if (null == cart)
             return  "";
         StringBuffer sb = new StringBuffer();
@@ -50,10 +50,10 @@ public class Print {
         if (null == buyTwoSendOneGoods || buyTwoSendOneGoods.size() <= 0)
             return "";
         int goodCount = 0;
-        for (Map.Entry<Good, Integer> goodNum:cart.getGoods().entrySet()) {
-            if (null != buyTwoSendOneGoods && buyTwoSendOneGoods.contains(goodNum.getKey().getBarcode())) {
-                sb.append("名称："+goodNum.getKey().getName()).
-                append("，数量："+(goodNum.getValue()/3)+goodNum.getKey().getSuCategory());
+        for (Map.Entry<Good, Integer> item:cart.getGoods().entrySet()) {
+            if (null != buyTwoSendOneGoods && buyTwoSendOneGoods.contains(item.getKey().getBarcode())) {
+                sb.append("名称："+item.getKey().getName()).
+                append("，数量："+(item.getValue()/3)+item.getKey().getUnit());
                 ++goodCount;
             }
         }

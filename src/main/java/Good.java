@@ -39,4 +39,7 @@ public enum Good {
     public String getName() { return name;}
     public String getBarcode() { return barcode;}
     public String getSuCategory() { return suCategory;}
+    public String getUnit(){
+        return unit;
+    }
 }
