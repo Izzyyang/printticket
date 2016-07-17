@@ -22,6 +22,10 @@ public class MainClass {
         //4-1  单个商品结算: 只满足95折
         cartType = "discount_fivepercent";
         System.out.println(Print.printGoodInfo(cartType));
+
+        //5-1  多个商品: 同时满足满2减1
+        cartType = "discount_twofreeone_fivepercent";
+        System.out.println(Print.printGoodInfo(cartType));
     }
 
 }
