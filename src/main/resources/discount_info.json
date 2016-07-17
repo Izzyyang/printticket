@@ -8,7 +8,8 @@
   {
     "type": "BUY_ONE_SEND_ONE_DISCOUNT",
     "barcodes": [
-      "ITEM000003"
+      "ITEM000003",
+      "ITEM000001"
     ]
   }
 ]
