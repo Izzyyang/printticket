@@ -10,6 +10,7 @@ public class MainClass {
         //2-1 多个商品结算：没有折扣+多个同样商品
         cartType = "nodiscount_same";
         System.out.println(Print.printGoodInfo(cartType));
+
         //2-2 多个商品结算：没有折扣+多个不同商品
         cartType = "nodiscount_multiple";
         System.out.println(Print.printGoodInfo(cartType));

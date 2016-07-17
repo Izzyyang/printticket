@@ -10,11 +10,11 @@ public class Print {
         Cart cart = new Cart(cartType);
         //折扣价格计算；
         double totalFee = 0.0;
-        double discountFee = 0.0;
         double totalDiscountFee = 0.0;
         StringBuffer sb = new StringBuffer();
         sb.append("      ********<没钱赚商店>购物清单********\n");
         for(Map.Entry<Good, Integer> goodNum:cart.getGoods().entrySet()){
+            double discountFee = 0.0;
             totalFee = goodNum.getKey().getPrice() * goodNum.getValue();
             // TODO 折扣获取；
             //discountFee =
