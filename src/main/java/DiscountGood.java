@@ -14,7 +14,7 @@ public class DiscountGood {
         return DiscountHelper.getDisCountBarCodesByType(type);
     }
 
-    //使用静态内部类实现单例；
+    //设计模式之单例：使用静态内部类实现单例；
     static class DiscountHelper {
         /**
          * 根据打折类型返回打折商品barcodes

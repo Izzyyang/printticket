@@ -5,13 +5,26 @@ import java.util.List;
 import java.util.Map;
 
 public class Cart {
-    private static Map<Good, Integer> goods = new HashMap<Good, Integer>();
-    public static  String cartGoodaddr = "src/main/resources/goodbarcode_num.json";
+    private  Map<Good, Integer> goods = new HashMap<Good, Integer>();
 
+    private  static Map<String, String> cartTypeAddress = new HashMap<String, String>();
     static {
-        goods = CartHelper.getGoodByFile();
+        cartTypeAddress.put("nodiscount_same","src/main/resources/cart_buy_nodiscount_same_goods.json");
+        cartTypeAddress.put("nodiscount_multiple","src/main/resources/cart_buy_nodiscount_multiple_goods.json");
+        cartTypeAddress.put("nodiscount_single","src/main/resources/cart_single_nodisocunt_good.json");
+        cartTypeAddress.put("discount_twofreeone","src/main/resources/cart_buy_two_getonefree_goods.json");
+        cartTypeAddress.put("discount_fivediscount","src/main/resources/cart_five_percent_discount_goods.json");
+        cartTypeAddress.put("discount_twofrrone_fivediscount","src/main/resources/cart_get_two_dicountway_goods.json");
     }
 
+    //单例模式使用：使用静态内部类初始化购物车；初始化只需一次；
+    public Cart(String type){
+        this.goods = CartHelper.getGoodByFile(type);
+    }
+    /**
+     * 计算购物车内商品原始总价；
+     * @return
+     */
     public double account() {
         double  result = 0.0;
         for (Good good: this.goods.keySet()){
@@ -20,6 +33,11 @@ public class Cart {
         return result;
     }
 
+    /**
+     * 加入购物车
+     * @param good
+     * @param count
+     */
     public void addToCart(Good good, int count) {
         if (this.goods.containsKey(good)) {
             this.goods.put(good, this.goods.get(good) + count);
@@ -32,28 +50,27 @@ public class Cart {
         return goods;
     }
 
-    //使用单例模式，每次只需获取一次即可；
-    static class CartHelper{
-        public static Map<Good, Integer> getGoodByFile(){
+    static class CartHelper {
+        public static Map<Good, Integer> getGoodByFile(String cartType) {
             Map<Good, Integer> goodNumMap = new HashMap<Good, Integer>();
             List<String> goodNums = null;
             String goodNumStr = null;
             try {
-                goodNumStr = ReadFileHelper.getDiscountGood(cartGoodaddr);
-                goodNums   = JSON.parseArray(goodNumStr, String.class);
+                goodNumStr = ReadFileHelper.getDiscountGood(cartTypeAddress.get(cartType));
+                goodNums = JSON.parseArray(goodNumStr, String.class);
                 if (null == goodNumStr || "" == goodNumStr || null == goodNums || goodNums.size() <= 0) {
                     return null;
                 }
-                for(String goodNum:goodNums){
+                for (String goodNum : goodNums) {
                     goodNum = goodNum.trim();
                     String barCode = goodNum.split("-")[0];
-                    Integer num = goodNum != null && goodNum.split("-").length > 1 ? Integer.valueOf(goodNum.split("-")[1])  : 1;
-                    num = goodNumMap.containsKey(Good.goodMap.get(barCode)) ? goodNumMap.get(Good.goodMap.get(barCode)) + 1 : num ;
-                    if ( !Good.goodMap.containsKey(barCode)) {
+                    Integer num = goodNum != null && goodNum.split("-").length > 1 ? Integer.valueOf(goodNum.split("-")[1]) : 1;
+                    num = goodNumMap.containsKey(Good.goodMap.get(barCode)) ? goodNumMap.get(Good.goodMap.get(barCode)) + 1 : num;
+                    if (!Good.goodMap.containsKey(barCode)) {
                         System.out.println("商品不存在！");
                         return null;
                     }
-                    goodNumMap.put(Good.goodMap.get(barCode),num);
+                    goodNumMap.put(Good.goodMap.get(barCode), num);
                 }
             } catch (Exception e) {
                 System.out.println("JSON 数据解析失败！");

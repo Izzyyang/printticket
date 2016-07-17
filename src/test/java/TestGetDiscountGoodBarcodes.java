@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 public class TestGetDiscountGoodBarcodes {
     @Test
     public void should_return_discountgoodbarcodes_when_readiscountjsonstrfromfile() throws Exception {
-        assertEquals("[\"ITEM000003\",\"ITEM000001\"]",DiscountGood.getDiscountGoods("BUY_ONE_SEND_ONE_DISCOUNT").toString());
+        assertEquals("[\"ITEM000001\",\"ITEM000003\"]",DiscountGood.getDiscountGoods("BUY_ONE_SEND_ONE_DISCOUNT").toString());
     }
 
     @Test
@@ -13,12 +13,12 @@ public class TestGetDiscountGoodBarcodes {
     }
 
     @Test
-    public void should_return_cartgoodandnum_when_readcartjsonstrfromfile() throws Exception {
-        assertEquals("{Coocla=5, Apple=3, Badminton=2}",new Cart().getGoods().toString());
+    public void should_return_cartsinglegood_when_readcartjsonstrfromsinglefile() throws Exception {
+        String type = "nodiscount_single";
+        assertEquals("{Rice=1}",new Cart(type).getGoods().toString());
     }
-
     @Test
     public void should_return_null_when_cartisnull() throws Exception {
-        assertEquals(null,new Cart());
+       // assertEquals(null,new Cart().getGoods("no"));
     }
 }

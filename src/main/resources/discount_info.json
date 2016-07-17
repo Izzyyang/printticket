@@ -2,14 +2,15 @@
   {
     "type": "FIVE_PERCENT_DISCOUNT",
     "barcodes": [
-      "ITEM000001"
+      "ITEM000001",
+      "ITEM000005"
     ]
   },
   {
     "type": "BUY_ONE_SEND_ONE_DISCOUNT",
     "barcodes": [
-      "ITEM000003",
-      "ITEM000001"
+      "ITEM000001",
+      "ITEM000003"
     ]
   }
 ]
