@@ -29,7 +29,6 @@ public class Cart {
      */
     public double countAll() {
         double  result = 0.0;
-        System.out.println(this.goods);
         for (Good good: this.goods.keySet()){
             result += good.getPrice() * this.goods.get(good);
         }
@@ -43,12 +42,11 @@ public class Cart {
             Boolean hasDiscounted = false;
             barcodes = DiscountGood.DiscountHelper.getDisCountBarCodesByType("BUY_ONE_SEND_ONE_DISCOUNT");
             for (int i =0; i < barcodes.size(); i++) {
-                if (barcodes.get(i).toString().equals(good.getBarcode())){
+                if ( barcodes.get(i).toString().equals(good.getBarcode()) && (this.goods.get(good) / 3) > 0 ){
                     discountFee += ( this.goods.get(good) / 3 ) * good.getPrice();
                     hasDiscounted = true;
                 }
             }
-            System.out.println(discountFee);
             if (!hasDiscounted == true){
                 barcodes = DiscountGood.DiscountHelper.getDisCountBarCodesByType("FIVE_PERCENT_DISCOUNT");
                 for (int i = 0; i < barcodes.size(); i++){
