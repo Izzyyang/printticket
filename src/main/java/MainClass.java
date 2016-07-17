@@ -23,8 +23,12 @@ public class MainClass {
         cartType = "discount_fivepercent";
         System.out.println(Print.printGoodInfo(cartType));
 
-        //5-1  多个商品: 同时满足满2减1
+        //5-1  单个商品: 同时满足满2减1
         cartType = "discount_twofreeone_fivepercent";
+        System.out.println(Print.printGoodInfo(cartType));
+
+        //6-1  多个商品混合测试1: 两种种打折方式和不打折商品同时存在
+        cartType = "discount_twofreeone_fivepercent_nodiscount_1";
         System.out.println(Print.printGoodInfo(cartType));
     }
 
