@@ -2,7 +2,6 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import util.ReadFileHelper;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,7 +23,7 @@ public class DiscountGood {
          */
        public static List getDisCountBarCodesByType(String discountType){
            if( null == discountType || "".equals(discountType))
-               return null;
+           return null;
 
            String discontStr = ReadFileHelper.getDiscountGood(discountGoodFilePath);
            Map<String,List> discountMap = new HashMap<String, List>();
