@@ -34,11 +34,12 @@ public class Print {
         //买二赠一商品信息打印；
         sb.append(getBuyOneSendOneStr(cart));
         //总计打印；
+        sb.append(SPLITLINE);
+        sb.append("总计："+cart.account()+"（元）\n");
         if(totalDiscountFee > 0) {
-            sb.append(SPLITLINE);
-            sb.append("总计："+cart.account()+"（元）\n").append("节省："+totalDiscountFee+"（元）");
-            sb.append("****************************************************");
+           sb.append("节省："+totalDiscountFee+"（元）");
         }
+        sb.append("****************************************************\n\n");
         return sb.toString();
     }
 
