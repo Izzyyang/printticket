@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 public class TestGetDiscountGoodBarcodes {
     @Test
     public void should_return_discountgoodbarcodes_when_readiscountjsonstrfromfile() throws Exception {
-        assertEquals("[\"ITEM000001\",\"ITEM000003\"]",DiscountGood.getDiscountGoods("BUY_ONE_SEND_ONE_DISCOUNT").toString());
+        assertEquals("[\"ITEM000001\",\"ITEM000003\"]",DiscountGood.getDiscountGoods("BUY_TWO_FREE_ONE_DISCOUNT").toString());
     }
 
     @Test

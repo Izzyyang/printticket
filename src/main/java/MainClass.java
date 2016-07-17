@@ -15,9 +15,10 @@ public class MainClass {
         cartType = "nodiscount_multiple";
         System.out.println(Print.printGoodInfo(cartType));
 
-//        //3-1 单个商品结算: 买二赠一
-//        cartType = "discount_twofreeone";
-//        System.out.println(Print.printGoodInfo(cartType));
+        //3-1 单个商品结算: 只满足买二赠一
+        cartType = "discount_twofreeone";
+        System.out.println(Print.printGoodInfo(cartType));
+
     }
 
 }

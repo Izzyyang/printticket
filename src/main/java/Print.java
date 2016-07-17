@@ -29,13 +29,13 @@ public class Print {
             }
             sb.append("\n");
         }
+        sb.append(SPLITLINE);
         //买二赠一商品信息打印；
         sb.append(getBuyTwoFreeOneStr(cart));
         //总计打印；
-        sb.append(SPLITLINE);
         sb.append("总计："+cart.countAll()+"（元）\n");
         if(totalDiscountFee > 0) {
-           sb.append("节省："+totalDiscountFee+"（元）");
+           sb.append("节省："+totalDiscountFee+"（元）\n");
         }
         sb.append("****************************************************\n\n");
         return sb.toString();
@@ -45,15 +45,15 @@ public class Print {
         if (null == cart)
             return  "";
         StringBuffer sb = new StringBuffer();
-        sb.append(SPLITLINE).append("买二赠一商品：\n");
-        List buyTwoSendOneGoods = DiscountGood.getDiscountGoods(DiscountGood.buy_one_send_one);
+        sb.append("买二赠一商品：\n");
+        List buyTwoSendOneGoods = DiscountGood.getDiscountGoods(DiscountGood.buy_two_free_one_discount);
         if (null == buyTwoSendOneGoods || buyTwoSendOneGoods.size() <= 0)
             return "";
         int goodCount = 0;
         for (Map.Entry<Good, Integer> item:cart.getGoods().entrySet()) {
             if (null != buyTwoSendOneGoods && buyTwoSendOneGoods.contains(item.getKey().getBarcode())) {
                 sb.append("名称："+item.getKey().getName()).
-                append("，数量："+(item.getValue()/3)+item.getKey().getUnit());
+                append("，数量："+(item.getValue()/3)+item.getKey().getUnit() + "\n");
                 ++goodCount;
             }
         }

@@ -38,7 +38,7 @@ public class Cart {
     public static double countGoodDiscount(Good good, int num){
         double discountFee = 0.0;
         boolean hasDiscounted = false;
-        List barcodes = DiscountGood.DiscountHelper.getDisCountBarCodesByType("BUY_ONE_SEND_ONE_DISCOUNT");
+        List barcodes = DiscountGood.DiscountHelper.getDisCountBarCodesByType(DiscountGood.buy_two_free_one_discount);
         for (int i =0; i < barcodes.size(); i++) {
             if ( barcodes.get(i).toString().equals(good.getBarcode()) && (num / 3) > 0 ){
                 discountFee += (num / 3 ) * good.getPrice();
@@ -46,7 +46,7 @@ public class Cart {
             }
         }
         if (!hasDiscounted == true){
-            barcodes = DiscountGood.DiscountHelper.getDisCountBarCodesByType("FIVE_PERCENT_DISCOUNT");
+            barcodes = DiscountGood.DiscountHelper.getDisCountBarCodesByType(DiscountGood.five_percent_discount);
             for (int i = 0; i < barcodes.size(); i++){
                 if (barcodes.get(i).toString().equals(good.getBarcode())){
                     discountFee += 0.05 * num * good.getPrice();
