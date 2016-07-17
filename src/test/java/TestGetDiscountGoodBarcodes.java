@@ -17,8 +17,9 @@ public class TestGetDiscountGoodBarcodes {
         String type = "nodiscount_single";
         assertEquals("{Rice=1}",new Cart(type).getGoods().toString());
     }
+
     @Test
     public void should_return_null_when_cartisnull() throws Exception {
-       // assertEquals(null,new Cart().getGoods("no"));
+        assertEquals(null,new Cart(null).getGoods());
     }
 }

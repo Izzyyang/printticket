@@ -3,8 +3,9 @@ import static org.junit.Assert.assertEquals;
 
 public class TestPrice {
     @Test
-    public void should_return__when_getcarttotalmoney() throws Exception {
-        //assertEquals("[\"ITEM000001\",\"ITEM000003\"]",DiscountGood.getDiscountGoods("BUY_ONE_SEND_ONE_DISCOUNT").toString());
+    public void should_return_4_0_when_getcarts_nodiscount_singletotalmoney() throws Exception {
+        String type = "nodiscount_single";
+        assertEquals(4.0, new Cart(type).account(), 0.001);
     }
 
 }
