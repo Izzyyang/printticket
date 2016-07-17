@@ -1,7 +1,8 @@
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import java.io.*;
+import util.ReadFileHelper;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,11 +11,11 @@ public class DiscountGood {
     public static  String discountGoodFilePath = "src/main/resources/discount_info.json";
 
     public static List getDiscountGoods(String type){
-        return GetDiscountGood.getDisCountBarCodesByType(type);
+        return DiscountHelper.getDisCountBarCodesByType(type);
     }
 
     //使用静态内部类实现单例；
-    static class GetDiscountGood{
+    static class DiscountHelper {
         /**
          * 根据打折类型返回打折商品barcodes
          * eg:discountType = “FIVE_PERCENT_DISCOUNT”return:"barcodes": ["ITEM000001"]
@@ -25,7 +26,7 @@ public class DiscountGood {
            if( null == discountType || "".equals(discountType))
                return null;
 
-           String discontStr = getDiscountGood(discountGoodFilePath);
+           String discontStr = ReadFileHelper.getDiscountGood(discountGoodFilePath);
            Map<String,List> discountMap = new HashMap<String, List>();
            try {
                JSONArray objs = JSON.parseArray(discontStr);
@@ -41,41 +42,5 @@ public class DiscountGood {
 
            return discountMap.get(discountType);
        }
-
-        /**
-         * 从文件中读取打折商品信息，返回打折信息json字符串；
-         * @param filePath
-         * @return
-         */
-       public static String getDiscountGood(String filePath){
-           if (null == filePath || "".equals(filePath))
-               return null;
-
-           StringBuffer sbuffer = new StringBuffer();
-           File file = new File(filePath);
-           BufferedReader reader = null;
-           try {
-               if (!file.exists()) {
-                   return null;
-               }
-               reader = new BufferedReader(new FileReader(file));
-               String readLine = "";
-               while((readLine =reader.readLine()) != null){
-                   sbuffer.append(readLine.trim());
-               }
-           } catch(Exception e){
-               e.printStackTrace();
-           } finally {
-               if(null != reader){
-                   try {
-                       reader.close();
-                   } catch (IOException e) {
-                       e.printStackTrace();
-                   }
-               }
-           }
-           return  sbuffer.toString();
-       }
-
     }
 }
