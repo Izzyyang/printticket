@@ -13,14 +13,14 @@ public class Print {
         double totalDiscountFee = 0.0;
         StringBuffer sb = new StringBuffer();
         sb.append("      ********<没钱赚商店>购物清单********\n");
-        for(Map.Entry<Good, Integer> goodNum:cart.getGoods().entrySet()){
+        for(Map.Entry<Good, Integer> item:cart.getGoods().entrySet()){
             double discountFee = 0.0;
-            totalFee = goodNum.getKey().getPrice() * goodNum.getValue();
+            totalFee = item.getKey().getPrice() * item.getValue();
             // TODO 折扣获取；
-            //discountFee =
-            sb.append("名称："+goodNum.getKey().getName())
-            .append("，数量："+goodNum.getValue())
-            .append("，单价："+goodNum.getKey().getPrice()+"（元）")
+//            discountFee = cart.countDiscount();
+            sb.append("名称："+item.getKey().getName())
+            .append("，数量："+item.getValue())
+            .append("，单价："+item.getKey().getPrice()+"（元）")
             .append("，小计："+(totalFee - discountFee)+"（元）");
             //有折扣商品打印折扣信息；
             if(discountFee > 0) {

@@ -35,30 +35,34 @@ public class Cart {
         return result;
     }
 
-    public double countDiscount() {
+    public static double countGoodDiscount(Good good, int num){
         double discountFee = 0.0;
-        List barcodes = null;
-        for (Good good: this.goods.keySet()){
-            Boolean hasDiscounted = false;
-            barcodes = DiscountGood.DiscountHelper.getDisCountBarCodesByType("BUY_ONE_SEND_ONE_DISCOUNT");
-            for (int i =0; i < barcodes.size(); i++) {
-                if ( barcodes.get(i).toString().equals(good.getBarcode()) && (this.goods.get(good) / 3) > 0 ){
-                    discountFee += ( this.goods.get(good) / 3 ) * good.getPrice();
-                    hasDiscounted = true;
+        boolean hasDiscounted = false;
+        List barcodes = DiscountGood.DiscountHelper.getDisCountBarCodesByType("BUY_ONE_SEND_ONE_DISCOUNT");
+        for (int i =0; i < barcodes.size(); i++) {
+            if ( barcodes.get(i).toString().equals(good.getBarcode()) && (num / 3) > 0 ){
+                discountFee += (num / 3 ) * good.getPrice();
+                hasDiscounted = true;
+            }
+        }
+        if (!hasDiscounted == true){
+            barcodes = DiscountGood.DiscountHelper.getDisCountBarCodesByType("FIVE_PERCENT_DISCOUNT");
+            for (int i = 0; i < barcodes.size(); i++){
+                if (barcodes.get(i).toString().equals(good.getBarcode())){
+                    discountFee += 0.05 * num * good.getPrice();
                 }
             }
-            if (!hasDiscounted == true){
-                barcodes = DiscountGood.DiscountHelper.getDisCountBarCodesByType("FIVE_PERCENT_DISCOUNT");
-                for (int i = 0; i < barcodes.size(); i++){
-                    if (barcodes.get(i).toString().equals(good.getBarcode())){
-                        discountFee += 0.05 * this.goods.get(good) * good.getPrice();
-                    }
-                }
 
-            }
+        }
+        return discountFee;
+    }
+    public double countDiscount() {
+        double allDiscountFee = 0.0;
+        for (Good good: this.goods.keySet()){
+            allDiscountFee += countGoodDiscount(good, this.goods.get(good));
        }
 
-        return discountFee;
+        return allDiscountFee;
 
     }
     /**
