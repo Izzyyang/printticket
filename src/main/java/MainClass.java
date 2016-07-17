@@ -30,6 +30,11 @@ public class MainClass {
         //6-1  多个商品混合测试1: 两种种打折方式和不打折商品同时存在
         cartType = "discount_twofreeone_fivepercent_nodiscount_1";
         System.out.println(Print.printGoodInfo(cartType));
+
+        //6-1  多个商品混合测试2: 两种种打折方式和不打折商品同时存在
+        cartType = "discount_twofreeone_fivepercent_nodiscount_2";
+        System.out.println(Print.printGoodInfo(cartType));
+
     }
 
 }
