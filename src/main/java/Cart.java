@@ -51,13 +51,19 @@ public class Cart {
         double discountFee = 0.0;
         boolean hasDiscounted = false;
         List barcodes = DiscountGood.DiscountHelper.getDisCountBarCodesByType(DiscountGood.buy_two_free_one_discount);
+
+        //异常情况或者没有折扣直接返回；
+        if(null == barcodes || barcodes.size() <= 0) {
+            return discountFee;
+        }
+
         for (int i =0; i < barcodes.size(); i++) {
             if ( barcodes.get(i).toString().equals(good.getBarcode()) && (num / 3) > 0 ){
                 discountFee += (num / 3 ) * good.getPrice();
                 hasDiscounted = true;
             }
         }
-        if (!hasDiscounted == true){
+        if (!hasDiscounted){
             barcodes = DiscountGood.DiscountHelper.getDisCountBarCodesByType(DiscountGood.five_percent_discount);
             for (int i = 0; i < barcodes.size(); i++){
                 if (barcodes.get(i).toString().equals(good.getBarcode())){
