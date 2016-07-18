@@ -20,6 +20,7 @@ public class Cart {
         cartTypeAddress.put("discount_twofreeone_fivepercent","src/main/resources/cart_get_two_dicountway_goods.json");
         cartTypeAddress.put("discount_twofreeone_fivepercent_nodiscount_1","src/main/resources/cart_get_three_discountway_goods_mixin_1.json");
         cartTypeAddress.put("discount_twofreeone_fivepercent_nodiscount_2","src/main/resources/cart_get_three_discountway_goods_mixin_2.json");
+        cartTypeAddress.put("discount_two_twofreeone_fivepercent","src/main/resources/discount_two_twofreeone_fivepercent.json");
     }
 
     //单例模式使用：使用静态内部类初始化购物车；初始化只需一次；
@@ -40,6 +41,12 @@ public class Cart {
         return result;
     }
 
+    /**
+     * 单品折扣价计算
+     * @param good
+     * @param num
+     * @return
+     */
     public static double countGoodDiscount(Good good, int num){
         double discountFee = 0.0;
         boolean hasDiscounted = false;
@@ -63,6 +70,11 @@ public class Cart {
         discountFee = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
         return discountFee;
     }
+
+    /**
+     * 计算总的折扣价
+     * @return
+     */
     public double countDiscount() {
         double allDiscountFee = 0.0;
         for (Good good: this.goods.keySet()){
@@ -89,6 +101,9 @@ public class Cart {
         return goods;
     }
 
+    /***
+     * 静态内部类，使用单例模式。帮助解析购物车数据；
+     */
     static class CartHelper {
         public static Map<Good, Integer> getGoodByFile(String cartType) {
             Map<Good, Integer> goodNumMap = new HashMap<Good, Integer>();
@@ -104,8 +119,9 @@ public class Cart {
                     goodNum = goodNum.trim();
                     String barCode = goodNum.split("-")[0];
                     if (!Good.goodMap.containsKey(barCode)) {
-                        System.out.println("商品不存在！");
-                        return null;
+                        System.out.println();
+                        System.out.println("      ××"+barCode+"此商品不存在，请注意核对barcode，尚未计入结算清单！");
+                        continue;
                     }
                     Integer numIncremental = goodNum != null && goodNum.split("-").length > 1 ? Integer.valueOf(goodNum.split("-")[1]) : 1;
                     Integer numOld = null != goodNumMap.get(Good.goodMap.get(barCode)) ? goodNumMap.get(Good.goodMap.get(barCode)) : 0;

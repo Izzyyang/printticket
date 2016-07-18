@@ -48,7 +48,7 @@ public class Print {
             return "";
         int goodCount = 0;
         for (Map.Entry<Good, Integer> item:cart.getGoods().entrySet()) {
-            if (null != buyTwoSendOneGoods && buyTwoSendOneGoods.contains(item.getKey().getBarcode())) {
+            if (null != buyTwoSendOneGoods && buyTwoSendOneGoods.contains(item.getKey().getBarcode()) && (item.getValue()/3) >= 1) {
                 sb.append("名称："+item.getKey().getName()).
                 append("，数量："+(item.getValue()/3)+item.getKey().getUnit() + "\n");
                 ++goodCount;

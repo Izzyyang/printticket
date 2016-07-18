@@ -23,7 +23,7 @@ public class MainClass {
         cartType = "discount_fivepercent";
         System.out.println(Print.printGoodInfo(cartType));
 
-        //5-1  单个商品: 同时满足满2减1
+        //5-1  单个商品: 同时满足满2减1和九五折
         cartType = "discount_twofreeone_fivepercent";
         System.out.println(Print.printGoodInfo(cartType));
 
@@ -31,8 +31,12 @@ public class MainClass {
         cartType = "discount_twofreeone_fivepercent_nodiscount_1";
         System.out.println(Print.printGoodInfo(cartType));
 
-        //6-1  多个商品混合测试2: 两种种打折方式和不打折商品同时存在
+        //6-2  多个商品混合测试2: 两种种打折方式和不打折商品同时存在
         cartType = "discount_twofreeone_fivepercent_nodiscount_2";
+        System.out.println(Print.printGoodInfo(cartType));
+
+        //6-3 多个商品混合测试3:两种买二增一商品，一个打折商品；
+        cartType = "discount_two_twofreeone_fivepercent";
         System.out.println(Print.printGoodInfo(cartType));
 
     }
