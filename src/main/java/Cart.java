@@ -114,7 +114,7 @@ public class Cart {
             List<String> goodNums = null;
             String goodNumStr = null;
             try {
-                goodNumStr = ReadFileHelper.getDiscountGood(cartTypeAddress.get(cartType));
+                goodNumStr = ReadFileHelper.getJsonString(cartTypeAddress.get(cartType));
                 goodNums = JSON.parseArray(goodNumStr, String.class);
                 if (null == goodNumStr || "" == goodNumStr || null == goodNums || goodNums.size() <= 0) {
                     return null;

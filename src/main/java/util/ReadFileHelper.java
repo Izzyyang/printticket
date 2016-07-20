@@ -11,7 +11,7 @@ public class ReadFileHelper {
      * @param filePath
      * @return
      */
-    public static String getDiscountGood(String filePath){
+    public static String getJsonString(String filePath){
         if (null == filePath || "".equals(filePath))
             return null;
 

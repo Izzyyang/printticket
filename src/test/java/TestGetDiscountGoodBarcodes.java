@@ -15,7 +15,7 @@ public class TestGetDiscountGoodBarcodes {
     @Test
     public void should_return_cartsinglegood_when_readcartjsonstrfromsinglefile() throws Exception {
         String type = "nodiscount_single";
-        assertEquals("{Rice=1}",new Cart(type).getGoods().toString());
+        assertEquals("{大米=1}",new Cart(type).getGoods().toString());
     }
 
     @Test

@@ -1,3 +1,42 @@
-[
-
-]
+{
+  "ITEM000007": {
+    "barcode": "ITEM000007",
+    "name": "大米",
+    "unit": "斤",
+    "suCategory": "主食",
+    "category":"食品",
+    "price": 4
+  },
+  "ITEM000005": {
+    "barcode": "ITEM000005",
+    "name": "苹果",
+    "unit": "个",
+    "suCategory": "水果",
+    "category":"食品",
+    "price": 5.5
+  },
+  "ITEM000009": {
+    "barcode": "ITEM000009",
+    "name": "水",
+    "unit": "瓶",
+    "suCategory": "饮料",
+    "category":"食品",
+    "price": 1
+  },
+  "ITEM000003": {
+    "barcode": "ITEM000003",
+    "name": "羽毛球",
+    "unit": "个",
+    "suCategory": "运动",
+    "category":"器材",
+    "price": 1
+  },
+  "ITEM000001": {
+    "barcode": "ITEM000001",
+    "name": "可口可乐",
+    "unit": "瓶",
+    "suCategory": "饮料",
+    "category":"食品",
+    "price": 3
+  }
+}

@@ -1,20 +1,21 @@
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import util.ReadFileHelper;
 import java.util.HashMap;
 import java.util.Map;
 
-public enum Good {
-    Coocla("ITEM000001", "可口可乐", "瓶", "食品", "碳酸饮料", 3.00), //买二赠一 + 九五折
-    Badminton("ITEM000003", "羽毛球", "个", "器材", "体育", 1.00), //买二赠一
-    Apple("ITEM000005", "苹果", "个", "食品", "水果", 5.5),  //九五折
-    Rice("ITEM000007", "大米", "斤", "食品", "主食", 4),  //没有任何活动的商品
-    Water("ITEM000009", "水", "瓶", "食品", "饮料", 1);  //没有任何活动的商品
+public class Good {
+
 
     static  Map<String, Good> goodMap = new HashMap<String, Good>();
+    static  String goodAddress = "src/main/resources/good_info.json";
     static {
-        goodMap.put("ITEM000001",Coocla);
-        goodMap.put("ITEM000003",Badminton);
-        goodMap.put("ITEM000005",Apple);
-        goodMap.put("ITEM000007",Rice);
-        goodMap.put("ITEM000009",Water);
+        String jsonStr = ReadFileHelper.getJsonString(goodAddress);
+        Map<String, JSONObject> goodMapTemp = JSON.parseObject(jsonStr,HashMap.class);
+        for (Map.Entry<String, JSONObject> goodEntry:goodMapTemp.entrySet()) {
+            goodMap.put(goodEntry.getKey(), JSON.parseObject(goodEntry.getValue().toString(), Good.class));
+        }
+
     };
 
     private String barcode;
@@ -24,22 +25,75 @@ public enum Good {
     private String suCategory;
     private double price;
 
-    Good(String barcode, String name, String unit, String suCategory, String category, double price) {
+    public Good() {
+    }
+
+    public Good(String barcode, String name, String unit, String category, String suCategory, double price) {
         this.barcode = barcode;
         this.name = name;
         this.unit = unit;
+        this.category = category;
         this.suCategory = suCategory;
-        this.category = suCategory;
         this.price = price;
+    }
+
+    public String getBarcode() {
+        return barcode;
+    }
+
+    public void setBarcode(String barcode) {
+        this.barcode = barcode;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getSuCategory() {
+        return suCategory;
+    }
+
+    public void setSuCategory(String suCategory) {
+        this.suCategory = suCategory;
     }
 
     public double getPrice() {
         return price;
     }
-    public String getName() { return name;}
-    public String getBarcode() { return barcode;}
-    public String getSuCategory() { return suCategory;}
-    public String getUnit(){
-        return unit;
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public static Map<String, Good> getGoodMap() {
+        return goodMap;
+    }
+
+    public static void setGoodMap(Map<String, Good> goodMap) {
+        Good.goodMap = goodMap;
+    }
+
+    public String toString(){
+        return name;
     }
 }

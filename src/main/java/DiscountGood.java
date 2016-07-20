@@ -28,7 +28,7 @@ public class DiscountGood {
            if( null == discountType || "".equals(discountType))
            return null;
 
-           String discontStr = ReadFileHelper.getDiscountGood(discountGoodFilePath);
+           String discontStr = ReadFileHelper.getJsonString(discountGoodFilePath);
            Map<String,List> discountMap = new HashMap<String, List>();
            try {
                JSONArray objs = JSON.parseArray(discontStr);

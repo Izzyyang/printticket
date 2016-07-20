@@ -1,26 +1,30 @@
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
 
 public class Print {
+
     public static final String SPLITLINE = "----------------------\n";
     public static final String SPLITSTART = "**********************\n\n";
+    public static  final DecimalFormat df = new DecimalFormat("#.00");
+
     public static String printGoodInfo(String cartType){
         Cart cart = new Cart(cartType);
         //折扣价格计算；
-        double totalFee = 0.0;
+        double totalFee = 0.00;
         StringBuffer sb = new StringBuffer();
         sb.append("***<没钱赚商店>购物清单***\n");
         for(Map.Entry<Good, Integer> item:cart.getGoods().entrySet()){
-            double discountFee = 0.0;
+            double discountFee = 0.00;
             totalFee = item.getKey().getPrice() * item.getValue();
             discountFee = cart.countGoodDiscount(item.getKey(), item.getValue());
             sb.append("名称："+item.getKey().getName())
             .append("，数量："+item.getValue()+item.getKey().getUnit())
-            .append("，单价："+item.getKey().getPrice()+"（元）")
-            .append("，小计："+(totalFee - discountFee)+"（元）");
+            .append("，单价："+df.format(item.getKey().getPrice())+"（元）")
+            .append("，小计："+df.format((totalFee - discountFee))+"（元）");
             //有折扣商品打印折扣信息；
             if(discountFee > 0) {
-                sb.append("，节省"+discountFee+"(元)");
+                sb.append("，节省"+df.format(discountFee)+"(元)");
             }
             sb.append("\n");
         }
@@ -28,9 +32,9 @@ public class Print {
         //买二赠一商品信息打印；
         sb.append(getBuyTwoFreeOneStr(cart));
         //总计打印；
-        sb.append("总计："+ (cart.countAll() - cart.countDiscount()) +"（元）\n");
+        sb.append("总计："+ df.format(cart.countAll() - cart.countDiscount()) +"（元）\n");
         if(cart.countDiscount() > 0) {
-           sb.append("节省："+ cart.countDiscount() +"（元）\n");
+           sb.append("节省："+ df.format(cart.countDiscount()) +"（元）\n");
         }
         sb.append(SPLITSTART);
         return sb.toString();

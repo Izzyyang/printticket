@@ -35,7 +35,6 @@ public class MainClass {
         //6-3 多个商品混合测试3:两种买二增一商品，一个打折商品；
         cartType = "discount_two_twofreeone_fivepercent";
         System.out.println(Print.printGoodInfo(cartType));
-
     }
 
 }
