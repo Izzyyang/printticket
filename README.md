@@ -26,8 +26,7 @@
 
 ## 集成测试
 
-[printticket](https://travis-ci.org/Izzyyang/printticket.svg?branch=master)
-
+[printticket](https://travis-ci.org/Izzyyang/)
 ## 特点
 
 * 可扩展性  运用了工厂模式  增加打折方式的时候比较容易扩展
