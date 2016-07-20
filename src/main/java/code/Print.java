@@ -1,3 +1,9 @@
+package code;
+
+import code.Cart;
+import code.DiscountGood;
+import code.Good;
+
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;

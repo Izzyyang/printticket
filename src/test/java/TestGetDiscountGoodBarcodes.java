@@ -1,10 +1,12 @@
+import code.Cart;
+import code.DiscountGood;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class TestGetDiscountGoodBarcodes {
     @Test
     public void should_return_discountgoodbarcodes_when_readiscountjsonstrfromfile() throws Exception {
-        assertEquals("[\"ITEM000001\",\"ITEM000003\"]",DiscountGood.getDiscountGoods("BUY_TWO_FREE_ONE_DISCOUNT").toString());
+        assertEquals("[\"ITEM000001\",\"ITEM000003\"]", DiscountGood.getDiscountGoods("BUY_TWO_FREE_ONE_DISCOUNT").toString());
     }
 
     @Test
