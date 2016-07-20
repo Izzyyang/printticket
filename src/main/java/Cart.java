@@ -55,18 +55,15 @@ public class Cart {
             return discountFee;
         }
 
-        for (int i =0; i < barcodes.size(); i++) {
-            if ( barcodes.get(i).toString().equals(good.getBarcode()) && (num / 3) > 0 ){
-                discountFee += (num / 3 ) * good.getPrice();
-                hasDiscounted = true;
-            }
+        if ( barcodes.contains(good.getBarcode()) && (num / 3) > 0 ){
+            discountFee += (num / 3 ) * good.getPrice();
+            hasDiscounted = true;
         }
+
         if (!hasDiscounted){
             barcodes = DiscountGood.DiscountHelper.getDisCountBarCodesByType(DiscountGood.five_percent_discount);
-            for (int i = 0; i < barcodes.size(); i++){
-                if (barcodes.get(i).toString().equals(good.getBarcode())){
-                    discountFee += 0.05 * num * good.getPrice();
-                }
+            if (barcodes.contains(good.getBarcode())){
+                discountFee += 0.05 * num * good.getPrice();
             }
 
         }
