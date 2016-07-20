@@ -1,8 +1,11 @@
 package util;
+
+import DiscountTypes.DiscountBasic;
 import DiscountTypes.*;
 import code.Good;
 import java.util.Map;
 import java.util.HashMap;
+
 
 public class Discount {
     private static Map<String, DiscountBasic> allDiscountTypes = new HashMap<String, DiscountBasic>();

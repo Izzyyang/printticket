@@ -5,9 +5,6 @@ import code.Good;
 import java.math.BigDecimal;
 import java.util.List;
 
-/**
- * Created by zhuhaihao on 16-7-20.
- */
 public class DiscountTwoFreeOne extends DiscountBasic {
 
     public double getDiscountFee(Good good, int num) {
