@@ -8,7 +8,7 @@ public class Print {
 
     public static final String SPLITLINE = "----------------------\n";
     public static final String SPLITSTART = "**********************\n\n";
-    public static  final DecimalFormat df = new DecimalFormat("#.00");
+    public static  final DecimalFormat df = new DecimalFormat("0.00");
 
     public static String printGoodInfo(String cartType){
         Cart cart = new Cart(cartType);
@@ -17,7 +17,7 @@ public class Print {
         StringBuffer sb = new StringBuffer();
         sb.append("***<没钱赚商店>购物清单***\n");
         for(Map.Entry<Good, Integer> item:cart.getGoods().entrySet()){
-            double discountFee = 0.00;
+            double discountFee = 0.00d;
             totalFee = item.getKey().getPrice() * item.getValue();
             discountFee = cart.countGoodDiscount(item.getKey(), item.getValue());
             sb.append("名称："+item.getKey().getName())
