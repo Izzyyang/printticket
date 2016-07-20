@@ -51,7 +51,7 @@ public class Cart {
         double discountFee = 0.00;
         boolean hasDiscounted = false;
 
-        if ( discountFee == Discount.getDiscountFea(good, num, DiscountGood.buy_two_free_one_discount)){
+        if ( (discountFee = Discount.getDiscountFea(good, num, DiscountGood.buy_two_free_one_discount)) > 0 ){
             hasDiscounted = true;
         }
         if (!hasDiscounted){

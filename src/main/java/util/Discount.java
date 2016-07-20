@@ -11,8 +11,8 @@ public class Discount {
     private static Map<String, DiscountBasic> allDiscountTypes = new HashMap<String, DiscountBasic>();
 
     static {
-        allDiscountTypes.put("discountTwoFreeOne", new DiscountTwoFreeOne());
-        allDiscountTypes.put("discountFivePercent", new DiscountFivePercent());
+        allDiscountTypes.put("BUY_TWO_FREE_ONE_DISCOUNT", new DiscountTwoFreeOne());
+        allDiscountTypes.put("FIVE_PERCENT_DISCOUNT", new DiscountFivePercent());
     }
 
     public static Map getAllDiscountTypes(){
