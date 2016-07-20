@@ -1,4 +1,6 @@
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.serializer.StringCodec;
+import util.Discount;
 import util.ReadFileHelper;
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -7,7 +9,6 @@ import java.util.Map;
 
 public class Cart {
     private  Map<Good, Integer> goods = new HashMap<Good, Integer>();
-
     private  static Map<String, String> cartTypeAddress = new HashMap<String, String>();
     static {
         cartTypeAddress.put("nodiscount_same","src/main/resources/cart_buy_nodiscount_same_goods.json");
@@ -46,29 +47,15 @@ public class Cart {
      * @return
      */
     public static double countGoodDiscount(Good good, int num){
-        double discountFee = 0.0;
+        double discountFee = 0.00;
         boolean hasDiscounted = false;
-        List barcodes = DiscountGood.DiscountHelper.getDisCountBarCodesByType(DiscountGood.buy_two_free_one_discount);
 
-        //异常情况或者没有折扣直接返回；
-        if(null == barcodes || barcodes.size() <= 0) {
-            return discountFee;
-        }
-
-        if ( barcodes.contains(good.getBarcode()) && (num / 3) > 0 ){
-            discountFee += (num / 3 ) * good.getPrice();
+        if ( discountFee = Discount.getDiscountFea(good, num, DiscountGood.buy_two_free_one_discount)){
             hasDiscounted = true;
         }
-
         if (!hasDiscounted){
-            barcodes = DiscountGood.DiscountHelper.getDisCountBarCodesByType(DiscountGood.five_percent_discount);
-            if (barcodes.contains(good.getBarcode())){
-                discountFee += 0.05 * num * good.getPrice();
-            }
-
+            discountFee = Discount.getDiscountFea(good, num, DiscountGood.five_percent_discount);
         }
-        BigDecimal bg =  new BigDecimal(discountFee);
-        discountFee = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
         return discountFee;
     }
 
