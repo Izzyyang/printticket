@@ -1,6 +1,3 @@
-/**
- * Created by izzy on 16-7-17.
- */
 public class MainClass {
     public static void main(String[] args){
         //1-1 单个商品结算：没有折扣

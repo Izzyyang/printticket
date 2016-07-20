@@ -1,9 +1,6 @@
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by izzy on 16-7-17.
- */
 public class Print {
     public static final String SPLITLINE = "----------------------------------------------\n";
     public static String printGoodInfo(String cartType){
