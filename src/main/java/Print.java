@@ -2,19 +2,20 @@ import java.util.List;
 import java.util.Map;
 
 public class Print {
-    public static final String SPLITLINE = "----------------------------------------------\n";
+    public static final String SPLITLINE = "----------------------\n";
+    public static final String SPLITSTART = "**********************\n\n";
     public static String printGoodInfo(String cartType){
         Cart cart = new Cart(cartType);
         //折扣价格计算；
         double totalFee = 0.0;
         StringBuffer sb = new StringBuffer();
-        sb.append("      ********<没钱赚商店>购物清单********\n");
+        sb.append("***<没钱赚商店>购物清单***\n");
         for(Map.Entry<Good, Integer> item:cart.getGoods().entrySet()){
             double discountFee = 0.0;
             totalFee = item.getKey().getPrice() * item.getValue();
             discountFee = cart.countGoodDiscount(item.getKey(), item.getValue());
             sb.append("名称："+item.getKey().getName())
-            .append("，数量："+item.getValue())
+            .append("，数量："+item.getValue()+item.getKey().getUnit())
             .append("，单价："+item.getKey().getPrice()+"（元）")
             .append("，小计："+(totalFee - discountFee)+"（元）");
             //有折扣商品打印折扣信息；
@@ -31,7 +32,7 @@ public class Print {
         if(cart.countDiscount() > 0) {
            sb.append("节省："+ cart.countDiscount() +"（元）\n");
         }
-        sb.append("****************************************************\n\n");
+        sb.append(SPLITSTART);
         return sb.toString();
     }
 
